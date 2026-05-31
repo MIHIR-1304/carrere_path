@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSE Career Navigator 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #12121a;
+    --surface2: #1a1a26;
+    --border: #2a2a3d;
+    --accent: #6c63ff;
+    --accent2: #ff6b6b;
+    --accent3: #43e97b;
+    --accent4: #f7971e;
+    --text: #e8e8f0;
+    --muted: #6b6b8a;
+    --gold: #ffd700;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px;
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(ellipse at 50% 0%, #1a1040 0%, #0a0a0f 70%);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%236c63ff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .hero-tag {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: rgba(108,99,255,0.1);
+    border: 1px solid rgba(108,99,255,0.3);
+    padding: 6px 18px;
+    border-radius: 100px;
+    margin-bottom: 32px;
+    display: inline-block;
+  }
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(36px, 7vw, 80px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -2px;
+    margin-bottom: 16px;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero-sub {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: clamp(16px, 2.5vw, 22px);
+    color: var(--muted);
+    max-width: 600px;
+    margin-bottom: 48px;
+  }
+  .hero-cta {
+    display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
+  }
+  .btn {
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: #8075ff; transform: translateY(-1px); }
+  .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--border); }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+  /* LAYOUT */
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+  /* NAV */
+  .sticky-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,15,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+  }
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    padding: 12px 0;
+    scrollbar-width: none;
+  }
+  .nav-inner::-webkit-scrollbar { display: none; }
+  .nav-btn {
+    white-space: nowrap;
+    padding: 7px 14px;
+    border-radius: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--muted);
+    transition: all 0.2s;
+  }
+  .nav-btn:hover, .nav-btn.active {
+    background: var(--surface2);
+    border-color: var(--border);
+    color: var(--text);
+  }
+  /* SECTION */
+  .section { padding: 80px 0; }
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 40px;
+  }
+  /* FIELD SELECTOR */
+  .field-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+  .field-card {
+    padding: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+  }
+  .field-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .field-card.active { border-color: var(--accent); background: rgba(108,99,255,0.1); }
+  .field-emoji { font-size: 28px; margin-bottom: 8px; }
+  .field-name { font-size: 12px; font-weight: 500; color: var(--text); }
+  .field-rank { font-size: 10px; color: var(--muted); margin-top: 4px; }
+  /* DETAIL PANEL */
+  .detail-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .panel-header {
+    padding: 32px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .panel-emoji { font-size: 48px; }
+  .panel-title { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; }
+  .panel-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+  .tag {
+    font-size: 10px;
+    padding: 4px 10px;
+    border-radius: 100px;
+    border: 1px solid;
+  }
+  .tag-green { color: var(--accent3); border-color: rgba(67,233,123,0.3); background: rgba(67,233,123,0.07); }
+  .tag-red { color: var(--accent2); border-color: rgba(255,107,107,0.3); background: rgba(255,107,107,0.07); }
+  .tag-blue { color: var(--accent); border-color: rgba(108,99,255,0.3); background: rgba(108,99,255,0.07); }
+  .tag-gold { color: var(--gold); border-color: rgba(255,215,0,0.3); background: rgba(255,215,0,0.07); }
+  .tag-orange { color: var(--accent4); border-color: rgba(247,151,30,0.3); background: rgba(247,151,30,0.07); }
+  .panel-tabs {
+    display: flex;
+    overflow-x: auto;
+    border-bottom: 1px solid var(--border);
+    scrollbar-width: none;
+    padding: 0 24px;
+  }
+  .panel-tabs::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    padding: 14px 18px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    background: transparent;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    margin-bottom: -1px;
+  }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .panel-body { padding: 32px; }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+  /* INFO BLOCKS */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin: 20px 0; }
+  .info-box {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+  }
+  .info-box-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .info-box-value { font-size: 20px; font-weight: 700; font-family: 'Syne', sans-serif; color: var(--text); }
+  .info-box-sub { font-size: 11px; color: var(--muted); margin-top: 4px; }
+  /* RATINGS */
+  .rating-row { display: flex; align-items: center; gap: 12px; margin: 10px 0; }
+  .rating-label { font-size: 12px; color: var(--muted); width: 180px; flex-shrink: 0; }
+  .rating-bar { flex: 1; height: 6px; background: var(--surface2); border-radius: 100px; overflow: hidden; }
+  .rating-fill { height: 100%; border-radius: 100px; transition: width 0.8s ease; }
+  .rating-num { font-size: 12px; color: var(--text); width: 24px; text-align: right; }
+  /* SALARY TABLE */
+  .salary-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+  .salary-table th { text-align: left; padding: 10px 16px; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--border); }
+  .salary-table td { padding: 12px 16px; border-bottom: 1px solid rgba(42,42,61,0.5); font-size: 13px; }
+  .salary-table tr:last-child td { border-bottom: none; }
+  .salary-table tr:hover td { background: var(--surface2); }
+  /* ROADMAP */
+  .roadmap-step {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .roadmap-step::before {
+    content: '';
+    position: absolute;
+    left: 19px;
+    top: 36px;
+    bottom: -24px;
+    width: 2px;
+    background: var(--border);
+  }
+  .roadmap-step:last-child::before { display: none; }
+  .step-dot {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    flex-shrink: 0;
+    font-family: 'Syne', sans-serif;
+  }
+  .step-content h4 { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+  .step-content p, .step-content ul { font-size: 13px; color: var(--muted); }
+  .step-content ul { padding-left: 16px; }
+  .step-content li { margin-bottom: 4px; }
+  /* PROS CONS */
+  .pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media(max-width:600px) { .pros-cons { grid-template-columns: 1fr; } }
+  .pros-list, .cons-list { background: var(--surface2); border-radius: 10px; padding: 20px; }
+  .pros-list h4 { color: var(--accent3); font-family: 'Syne', sans-serif; margin-bottom: 14px; }
+  .cons-list h4 { color: var(--accent2); font-family: 'Syne', sans-serif; margin-bottom: 14px; }
+  .pros-list li, .cons-list li { margin-bottom: 10px; font-size: 12px; color: var(--muted); padding-left: 4px; list-style: none; position: relative; padding-left: 18px; }
+  .pros-list li::before { content: '✓'; position: absolute; left: 0; color: var(--accent3); }
+  .cons-list li::before { content: '✗'; position: absolute; left: 0; color: var(--accent2); }
+  /* COMPARISON TABLE */
+  .comp-wrap { overflow-x: auto; }
+  .comp-table { width: 100%; border-collapse: collapse; min-width: 900px; }
+  .comp-table th { padding: 12px 10px; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--border); text-align: center; white-space: nowrap; }
+  .comp-table th:first-child { text-align: left; }
+  .comp-table td { padding: 12px 10px; border-bottom: 1px solid rgba(42,42,61,0.5); font-size: 12px; text-align: center; }
+  .comp-table td:first-child { text-align: left; font-weight: 600; white-space: nowrap; }
+  .comp-table tr:hover td { background: var(--surface2); }
+  .score-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 12px;
+  }
+  /* RECOMMENDATION */
+  .rec-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .rec-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+  }
+  .rec-card.top::before { background: var(--gold); }
+  .rec-card.safe::before { background: var(--accent3); }
+  .rec-card.pay::before { background: var(--accent); }
+  .rec-card.easy::before { background: var(--accent4); }
+  .rec-card.future::before { background: var(--accent2); }
+  .rec-badge { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+  .rec-title { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800; margin-bottom: 10px; }
+  .rec-body { font-size: 13px; color: var(--muted); }
+  /* RANKING TABLE */
+  .rank-table { width: 100%; border-collapse: collapse; }
+  .rank-table td { padding: 10px 16px; border-bottom: 1px solid rgba(42,42,61,0.5); font-size: 13px; }
+  .rank-table td:first-child { font-weight: 700; color: var(--muted); width: 36px; }
+  .rank-table tr:nth-child(1) td { color: var(--gold); }
+  .rank-table tr:nth-child(2) td { color: #c0c0c0; }
+  .rank-table tr:nth-child(3) td { color: #cd7f32; }
+  /* MISC */
+  h3 { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; margin: 24px 0 12px; }
+  p { font-size: 13px; color: var(--muted); margin-bottom: 12px; }
+  .divider { height: 1px; background: var(--border); margin: 24px 0; }
+  .pill { display: inline-block; padding: 4px 10px; background: var(--surface2); border: 1px solid var(--border); border-radius: 100px; font-size: 11px; margin: 3px; }
+  .highlight-box {
+    background: rgba(108,99,255,0.08);
+    border: 1px solid rgba(108,99,255,0.2);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-size: 13px;
+  }
+  .warning-box {
+    background: rgba(247,151,30,0.08);
+    border: 1px solid rgba(247,151,30,0.2);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-size: 13px;
+    color: var(--accent4);
+  }
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 60px 24px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 12px;
+  }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-in { animation: fadeIn 0.4s ease forwards; }
+  /* SCORE COLORS */
+  .s-high { background: rgba(67,233,123,0.15); color: #43e97b; }
+  .s-mid { background: rgba(247,151,30,0.15); color: #f7971e; }
+  .s-low { background: rgba(255,107,107,0.15); color: #ff6b6b; }
+  .s-accent { background: rgba(108,99,255,0.15); color: #6c63ff; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">B.Tech CSE 2026 Edition</div>
+  <h1>CSE Career<br><span>Navigator</span></h1>
+  <p class="hero-sub">The most complete, data-driven career guide for Computer Science students — 11 fields, brutally honest.</p>
+  <div class="hero-cta">
+    <a href="#explorer" class="btn btn-primary">Explore Fields →</a>
+    <a href="#comparison" class="btn btn-ghost">See Comparison</a>
+    <a href="#recommendation" class="btn btn-ghost">Get Recommendation</a>
+  </div>
+</section>
+
+<!-- STICKY NAV -->
+<nav class="sticky-nav">
+  <div class="nav-inner">
+    <button class="nav-btn" onclick="scrollTo('explorer')">🗺 Field Explorer</button>
+    <button class="nav-btn" onclick="scrollTo('comparison')">📊 Comparison Table</button>
+    <button class="nav-btn" onclick="scrollTo('recommendation')">🎯 Recommendation</button>
+    <button class="nav-btn" onclick="scrollTo('tip')">💡 Pro Tip</button>
+  </div>
+</nav>
+
+<!-- FIELD EXPLORER -->
+<section class="section" id="explorer">
+  <div class="container">
+    <div class="section-label">01 — Field Explorer</div>
+    <h2 class="section-title">Choose a Field to Deep-Dive</h2>
+    <div class="field-grid" id="fieldGrid"></div>
+    <div class="detail-panel" id="detailPanel">
+      <div style="padding:48px;text-align:center;color:var(--muted);">
+        <div style="font-size:48px;margin-bottom:16px;">☝️</div>
+        <p>Select a field above to see the full analysis</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON TABLE -->
+<section class="section" id="comparison" style="background:var(--surface);">
+  <div class="container">
+    <div class="section-label">02 — At a Glance</div>
+    <h2 class="section-title">Complete Comparison Table</h2>
+    <div class="comp-wrap">
+      <table class="comp-table" id="compTable"></table>
+    </div>
+  </div>
+</section>
+
+<!-- RECOMMENDATION -->
+<section class="section" id="recommendation">
+  <div class="container">
+    <div class="section-label">03 — For You</div>
+    <h2 class="section-title">Personalised Recommendation</h2>
+    <div class="highlight-box">
+      <strong>Your Profile:</strong> B.Tech 1st Year CSE · Beginner in programming · Wants high pay · Strong future scope · Good job opportunities · Won't spend 6–8 years before first job
+    </div>
+    <div id="rankingSection"></div>
+    <div id="recCards"></div>
+  </div>
+</section>
+
+<!-- PRO TIP -->
+<section class="section" id="tip" style="background:var(--surface);">
+  <div class="container">
+    <div class="section-label">04 — Wisdom</div>
+    <h2 class="section-title">The Most Important Advice</h2>
+    <div style="max-width:700px;">
+      <div class="warning-box" style="font-size:15px;line-height:1.8;">
+        ⚡ <strong>Don't pick a specialization in 1st year.</strong> Spend the first 2–3 months exploring. Build one tiny project in each area you're curious about. Your gut will tell you more than any comparison table.
+      </div>
+      <h3>The 2–3 Month Exploration Plan</h3>
+      <div class="roadmap-step">
+        <div class="step-dot" style="background:rgba(108,99,255,0.2);color:var(--accent);">1</div>
+        <div class="step-content">
+          <h4>Month 1 — Web Dev Basics</h4>
+          <p>Build a personal portfolio site in HTML/CSS/JS. No frameworks yet. Just get something live on the internet. This teaches you the fundamentals that apply everywhere.</p>
+        </div>
+      </div>
+      <div class="roadmap-step">
+        <div class="step-dot" style="background:rgba(67,233,123,0.2);color:var(--accent3);">2</div>
+        <div class="step-content">
+          <h4>Month 2 — Pick Two: AI or Cybersecurity</h4>
+          <p>Try a beginner Python ML project (digit recognition with MNIST). Also try one CTF challenge on PicoCTF. See which one excites you more — the "building" side or the "breaking" side.</p>
+        </div>
+      </div>
+      <div class="roadmap-step">
+        <div class="step-dot" style="background:rgba(247,151,30,0.2);color:var(--accent4);">3</div>
+        <div class="step-content">
+          <h4>Month 3 — Cloud or App Dev</h4>
+          <p>Deploy your Month 1 site to AWS Free Tier. Or build a simple mobile app with React Native. At this point, you'll know what you actually enjoy doing for hours without noticing.</p>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <h3>Decision Framework</h3>
+      <p>After 3 months of exploration, ask yourself:</p>
+      <ul style="padding-left:20px;color:var(--muted);font-size:13px;">
+        <li style="margin-bottom:8px;">Do I prefer <strong style="color:var(--text)">building things users see</strong>? → Web Dev / App Dev / UI/UX</li>
+        <li style="margin-bottom:8px;">Do I prefer <strong style="color:var(--text)">solving puzzles and maths</strong>? → AI/ML / Data Science</li>
+        <li style="margin-bottom:8px;">Do I prefer <strong style="color:var(--text)">infrastructure and systems</strong>? → Cloud / DevOps</li>
+        <li style="margin-bottom:8px;">Do I prefer <strong style="color:var(--text)">finding weaknesses and hacking</strong>? → Cybersecurity</li>
+        <li style="margin-bottom:8px;">Do I prefer <strong style="color:var(--text)">working with data to find answers</strong>? → Data Science</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>CSE Career Navigator 2026 · Data-driven. Brutally honest. Built for you.</p>
+  <p style="margin-top:8px;font-size:11px;">Salary figures are approximate 2026 market estimates. Always verify with current job postings on LinkedIn, Glassdoor, and Levels.fyi</p>
+</footer>
+
+<script>
+const FIELDS = [
+  {
+    id: "aiml",
+    emoji: "🤖",
+    name: "AI / ML",
+    rank: "#1 Future",
+    tags: [
+      {label:"High Salary", cls:"tag-gold"},
+      {label:"Hot Field", cls:"tag-green"},
+      {label:"Hard Math", cls:"tag-red"},
+      {label:"Remote", cls:"tag-blue"}
+    ],
+    intro: "Artificial Intelligence and Machine Learning involves building systems that learn from data and make intelligent decisions without being explicitly programmed for each task.",
+    daily: "Daily work includes: collecting and cleaning datasets, designing and training neural networks/models, evaluating model performance, fine-tuning pre-trained models (like GPT, BERT), deploying ML pipelines to production, and researching new approaches. You'll write a lot of Python and read a lot of research papers.",
+    langs: ["Python (primary)", "R (data science)", "Julia (research)", "C++ (deployment)"],
+    tools: ["TensorFlow", "PyTorch", "Scikit-learn", "Hugging Face", "Jupyter", "CUDA", "MLflow", "Weights & Biases", "Pandas", "NumPy"],
+    math: "Very High — Linear Algebra, Calculus, Probability & Statistics, Optimization Theory. You need to understand backpropagation mathematically.",
+    coding: "High",
+    roadmap: [
+      {phase:"0–6 Months", color:"#6c63ff", items:["Python fundamentals (functions, OOP, libraries)","NumPy, Pandas, Matplotlib","Basic ML with Scikit-learn (regression, classification)","Complete Andrew Ng's ML Course (Coursera)","Mini project: Iris flower or housing price predictor"]},
+      {phase:"6–18 Months", color:"#43e97b", items:["Deep Learning with PyTorch or TensorFlow","CNNs for image tasks, RNNs for sequences","Natural Language Processing basics","Kaggle competitions (aim top 30%)","Projects: Sentiment analyzer, Image classifier, Chatbot"]},
+      {phase:"18+ Months", color:"#ffd700", items:["Transformers, Attention mechanisms, Fine-tuning LLMs","MLOps, model deployment with FastAPI + Docker","Research paper reading and replication","Contribute to open-source ML libraries","Certifications: AWS ML Specialty, Google ML Engineer"]}
+    ],
+    certs: ["Google Professional ML Engineer", "AWS ML Specialty", "Deep Learning Specialization (Coursera)", "Fast.ai Practical Deep Learning"],
+    demand2026: "Extremely High",
+    future: "Highest of all fields — AI is reshaping every industry",
+    aiImpact: "Paradoxically safer — AI tools exist to help ML engineers, but the role itself requires deep expertise to build and manage AI.",
+    fresherChance: "Moderate — Takes 18–24 months to be truly job-ready",
+    competition: "High but manageable — most applicants lack depth",
+    indiaSalary: {entry:"₹6–12 LPA", mid:"₹15–30 LPA", senior:"₹35–80 LPA"},
+    usaSalary: {entry:"$95K–$120K", mid:"$140K–$200K", senior:"$200K–$400K+"},
+    highest: "₹1 Cr+ in FAANG India, $500K+ in US (total comp)",
+    difficulty: {learning:9, math:10, timeReady:8, interview:9},
+    workPressure: "High in product companies, moderate in research roles",
+    remote: "Excellent — Most roles are remote-friendly",
+    freelance: "Moderate — High-value but niche projects",
+    growth: "Exceptional — Chief AI Officer, Research Scientist, ML Platform Lead",
+    startup: "Best field for AI startups — massive VC funding in 2026",
+    stability: "Very High — Every major company needs ML engineers",
+    automation: "Very Low — ML engineers build the automation",
+    pros: ["Highest salary ceiling of any CS field","Extremely future-proof for 20+ years","Intellectually stimulating and challenging","Nobel Prize-level research opportunities","Works in every industry (healthcare, finance, gaming)","Massive government and private sector investment","Great remote work culture","Build things that affect millions of people","Open-source community is incredibly active","India has world-class ML talent (IIT/IISc pipeline)"],
+    cons: ["Extremely steep learning curve","Heavy mathematics required (many students quit)","Takes 2+ years to get first good job","GPU resources are expensive for training","Research jobs are extremely competitive","Staying current requires constant reading","Imposter syndrome is rampant","Entry-level jobs are rare — most want 'experienced' ML engineers","High burnout risk in product companies","Ethical concerns (bias, privacy) add complexity"]
+  },
+  {
+    id: "ds",
+    emoji: "📊",
+    name: "Data Science",
+    rank: "#2 Analytical",
+    tags: [
+      {label:"High Salary", cls:"tag-gold"},
+      {label:"Versatile", cls:"tag-green"},
+      {label:"Stats Heavy", cls:"tag-blue"},
+      {label:"Business Facing", cls:"tag-orange"}
+    ],
+    intro: "Data Science is the art and science of extracting actionable insights from large datasets. It combines statistics, programming, and domain knowledge to help businesses make data-driven decisions.",
+    daily: "Daily: cleaning messy data, building dashboards, running A/B tests, creating predictive models, writing SQL queries, communicating findings to non-technical stakeholders, automating reports. More business-focused than ML.",
+    langs: ["Python", "SQL (essential)", "R", "Scala (big data)"],
+    tools: ["Pandas", "NumPy", "Tableau", "Power BI", "Spark", "Airflow", "dbt", "Jupyter", "Snowflake", "BigQuery"],
+    math: "High — Statistics, Probability, Linear Algebra, A/B Testing, Hypothesis Testing. Less deep than ML but broader.",
+    coding: "Medium-High",
+    roadmap: [
+      {phase:"0–6 Months", color:"#6c63ff", items:["Python + SQL fundamentals","Statistics: mean, variance, distributions, hypothesis testing","Excel / Google Sheets for data manipulation","Pandas and Matplotlib","Project: Analyze a public dataset (Kaggle), make a business report"]},
+      {phase:"6–18 Months", color:"#43e97b", items:["Advanced SQL (window functions, CTEs, subqueries)","Tableau or Power BI dashboards","Machine Learning basics with Scikit-learn","Data cleaning and EDA (Exploratory Data Analysis)","Projects: Customer churn analysis, Sales forecasting, RFM Analysis"]},
+      {phase:"18+ Months", color:"#ffd700", items:["Big Data tools: Spark, Hadoop, Kafka","Cloud data warehouses: BigQuery, Snowflake, Redshift","A/B Testing and experimentation frameworks","Data Engineering basics (ETL pipelines, Airflow)","Certs: Google Data Analytics, IBM Data Science, dbt Certified"]}
+    ],
+    certs: ["Google Data Analytics Certificate", "IBM Data Science Professional", "Microsoft Power BI Data Analyst", "Databricks Certified Associate"],
+    demand2026: "Very High",
+    future: "Strong — but some analyst roles merging with ML Engineer",
+    aiImpact: "Mixed — AI tools automate basic analysis, but strategic and senior DS roles are safe",
+    fresherChance: "Good — Many entry-level Analyst → Data Scientist pipelines in companies",
+    competition: "Very High — Many graduates aim here",
+    indiaSalary: {entry:"₹5–10 LPA", mid:"₹12–25 LPA", senior:"₹28–60 LPA"},
+    usaSalary: {entry:"$80K–$105K", mid:"$120K–$160K", senior:"$170K–$260K"},
+    highest: "₹80 LPA in top firms, $280K+ in US tech",
+    difficulty: {learning:7, math:8, timeReady:7, interview:7},
+    workPressure: "Moderate — More 9-to-6, less crunch than SWE",
+    remote: "Excellent — Most analytics roles are remote-friendly",
+    freelance: "Good — Dashboard projects, business consulting, data reports",
+    growth: "Data Analyst → Senior DS → Lead DS → Director of Analytics",
+    startup: "Great — Every startup needs someone who can 'read the data'",
+    stability: "High — Every business has data, every business needs analysis",
+    automation: "Low-Moderate — Routine reporting is being automated, but insight generation isn't",
+    pros: ["Shorter time-to-first-job than AI/ML","Valuable in every industry (healthcare, finance, retail, sports)","High demand globally","Business impact is visible and measurable","SQL is easy to learn and highly marketable","Strong freelancing potential","Great work-life balance in most companies","Remote-friendly","Many entry-level programs at top companies","Can transition easily to ML or Data Engineering"],
+    cons: ["Many bootcamp grads flooding the market (quality varies)","'Data Scientist' title is often misleading (many are analysts)","Statistical depth required is intimidating for beginners","Lots of data cleaning (up to 80% of time)","Business communication is crucial but not taught in CS","Requires domain knowledge (finance, healthcare) to excel","AI tools reducing demand for junior-level work","SQL interviews can be surprisingly hard","Can feel repetitive in certain industries","Pay gap between India and US is large"]
+  },
+  {
+    id: "cloud",
+    emoji: "☁️",
+    name: "Cloud Computing",
+    rank: "#3 Infrastructure",
+    tags: [
+      {label:"Steady Growth", cls:"tag-green"},
+      {label:"Cert-Friendly", cls:"tag-blue"},
+      {label:"DevOps Adjacent", cls:"tag-orange"},
+      {label:"Remote", cls:"tag-blue"}
+    ],
+    intro: "Cloud Computing involves designing, deploying, and managing applications and infrastructure on platforms like AWS, Azure, and GCP. It's the backbone of all modern software.",
+    daily: "Managing cloud resources, writing Infrastructure as Code (Terraform/CloudFormation), configuring auto-scaling, setting up CI/CD pipelines, monitoring costs, ensuring security compliance, migrating on-premise systems to cloud. Heavy on CLI and configuration.",
+    langs: ["Python (automation)", "Bash/Shell", "YAML/JSON", "Go (increasingly popular)", "Terraform HCL"],
+    tools: ["AWS / Azure / GCP", "Terraform", "Kubernetes", "Docker", "Ansible", "Jenkins", "Prometheus", "Grafana", "Helm", "ArgoCD"],
+    math: "Low — Mostly networking concepts, cost optimization, systems design",
+    coding: "Medium — More config and scripting than application development",
+    roadmap: [
+      {phase:"0–6 Months", color:"#6c63ff", items:["Linux fundamentals (must)","Networking basics (TCP/IP, DNS, HTTP, VPCs)","AWS Free Tier — EC2, S3, RDS, Lambda","Get AWS Cloud Practitioner certified","Mini project: Deploy a web app on AWS"]},
+      {phase:"6–18 Months", color:"#43e97b", items:["Docker fundamentals and containerization","Kubernetes (K8s) — hardest part of cloud","Terraform for Infrastructure as Code","CI/CD pipelines (Jenkins, GitHub Actions)","Project: Full microservices deployment on K8s"]},
+      {phase:"18+ Months", color:"#ffd700", items:["AWS Solutions Architect Professional","Multi-cloud strategies","FinOps — Cloud cost optimization","Security: IAM, compliance, Zero Trust architecture","Service mesh: Istio, Linkerd"]}
+    ],
+    certs: ["AWS Cloud Practitioner (start here)", "AWS Solutions Architect Associate", "Google Associate Cloud Engineer", "CKA: Certified Kubernetes Administrator"],
+    demand2026: "Very High",
+    future: "Extremely strong — every company moving to cloud",
+    aiImpact: "Low — Cloud infrastructure cannot be automated away easily",
+    fresherChance: "Good with certifications — AWS cert opens many doors",
+    competition: "Moderate — Certs differentiate clearly",
+    indiaSalary: {entry:"₹5–9 LPA", mid:"₹12–22 LPA", senior:"₹25–55 LPA"},
+    usaSalary: {entry:"$90K–$115K", mid:"$130K–$170K", senior:"$180K–$280K"},
+    highest: "₹60 LPA in senior cloud architect roles, $300K in US",
+    difficulty: {learning:7, math:3, timeReady:6, interview:7},
+    workPressure: "Moderate — On-call rotations can be stressful",
+    remote: "Excellent — All remote by nature of the work",
+    freelance: "Moderate — Cloud migration consulting is lucrative",
+    growth: "Cloud Engineer → Solutions Architect → Principal Architect → CTO",
+    startup: "Essential — Every startup needs cloud infra",
+    stability: "Very High — Spending on cloud is only increasing",
+    automation: "Low — AIOps helps but doesn't replace architects",
+    pros: ["Certifications have strong market value","Shorter time to first job with AWS cert","No heavy maths required","Extremely remote-friendly","Stable and growing market","Works in every industry","Good freelancing potential for migration projects","Overlaps with DevOps for double expertise","GovCloud sector provides job security","Clear career ladder with certs"],
+    cons: ["Can feel repetitive once you learn the patterns","Requires comfort with CLI and terminals","On-call rotations in some roles","AWS/Azure/GCP are each their own ecosystem to learn","Costs of learning (exams are $150–$300 each)","Needs networking knowledge (underrated difficulty)","Less creative than development roles","Kubernetes learning curve is brutal","Tech changes fast (new services every month)","Less glamorous than AI/ML in interviews"]
+  },
+  {
+    id: "webdev",
+    emoji: "🌐",
+    name: "Web Development",
+    rank: "#1 First Job",
+    tags: [
+      {label:"Easiest Entry", cls:"tag-green"},
+      {label:"High Demand", cls:"tag-blue"},
+      {label:"Freelance King", cls:"tag-gold"},
+      {label:"Fast Results", cls:"tag-orange"}
+    ],
+    intro: "Web Development covers building websites and web applications — from static pages to complex platforms like Swiggy, Notion, and LinkedIn. Split into Frontend (what users see), Backend (server logic), and Full Stack (both).",
+    daily: "Frontend devs: turning designs into interactive interfaces with React/HTML/CSS. Backend devs: building APIs, managing databases, auth, and business logic. Full Stack: all of it. Daily standups, code reviews, feature sprints, bug fixes.",
+    langs: ["JavaScript (mandatory)", "TypeScript", "HTML/CSS", "Python/Node.js/PHP (backend)", "SQL"],
+    tools: ["React / Next.js", "Node.js + Express", "MongoDB / PostgreSQL", "Git + GitHub", "Figma", "Vercel / Netlify", "Postman", "Docker (basic)", "Tailwind CSS", "Redux / Zustand"],
+    math: "Very Low — Basic logic and algorithms. No heavy maths.",
+    coding: "High — You write code all day",
+    roadmap: [
+      {phase:"0–6 Months", color:"#6c63ff", items:["HTML, CSS, JavaScript fundamentals","Build 3 static websites","JavaScript DOM manipulation","Basic React","Project: Portfolio site + Todo app + Weather app"]},
+      {phase:"6–18 Months", color:"#43e97b", items:["React with hooks, state management","Node.js + Express + REST APIs","MongoDB or PostgreSQL","Authentication (JWT, OAuth)","Project: Full-stack social media clone or e-commerce site"]},
+      {phase:"18+ Months", color:"#ffd700", items:["Next.js (SSR/SSG) + TypeScript","Testing (Jest, Cypress)","System design for web scale","DevOps basics (Docker, CI/CD)","Certs: Meta Frontend, AWS Developer Associate"]}
+    ],
+    certs: ["Meta Front-End Developer Certificate", "freeCodeCamp Certifications", "AWS Developer Associate", "MongoDB Developer Certificate"],
+    demand2026: "Very High",
+    future: "Strong and stable — web is not going anywhere",
+    aiImpact: "Moderate — AI generates boilerplate but cannot replace senior devs who architect systems",
+    fresherChance: "Excellent — Highest fresher hiring of all fields",
+    competition: "Very High — Most popular entry path",
+    indiaSalary: {entry:"₹4–8 LPA", mid:"₹10–20 LPA", senior:"₹22–50 LPA"},
+    usaSalary: {entry:"$75K–$100K", mid:"$110K–$150K", senior:"$160K–$250K"},
+    highest: "₹60 LPA in FAANG, $300K+ total comp in US",
+    difficulty: {learning:5, math:2, timeReady:4, interview:6},
+    workPressure: "Moderate — Deadline sprints can be intense",
+    remote: "Excellent — One of the most remote-friendly fields",
+    freelance: "Excellent — Most freelance CS work is web development",
+    growth: "Junior Dev → Senior Dev → Lead / Architect → VP Engineering",
+    startup: "Best for startup founding — can build an MVP alone",
+    stability: "High — Web apps are needed everywhere forever",
+    automation: "Moderate — AI writes boilerplate, but humans architect and review",
+    pros: ["Fastest path to first job (6–12 months)","Lowest maths barrier of any tech field","Best freelancing opportunities","Can start earning from day one","Huge community and free resources","See results immediately (visual, satisfying)","Multiple niches (SaaS, e-commerce, fintech, gaming)","Full-Stack is extremely valuable","Can build your own startup solo","Transferable to mobile (React Native) and desktop (Electron)"],
+    cons: ["Very saturated — thousands of bootcamp graduates","JavaScript ecosystem changes too fast","Entry-level salaries in India are lower (₹4–5 LPA)","'Full Stack' scope can be overwhelming","AI tools are most advanced in web dev (GitHub Copilot)","Frontend can feel superficial to some engineers","Imposter syndrome is common","Needs design sense for UI work","Constant framework wars (React vs Vue vs Svelte)","Senior roles require architectural depth"]
+  },
+  {
+    id: "swe",
+    emoji: "💻",
+    name: "Software Development",
+    rank: "#2 Foundation",
+    tags: [
+      {label:"Universal", cls:"tag-green"},
+      {label:"High Pay", cls:"tag-gold"},
+      {label:"DSA Required", cls:"tag-blue"},
+      {label:"Stable", cls:"tag-orange"}
+    ],
+    intro: "Software Development (SWE / SDE) is the broad discipline of designing, building, and maintaining software systems. Most top-tier tech jobs (Google, Microsoft, Amazon, Flipkart) hire for this role. It's the backbone role from which all specializations emerge.",
+    daily: "Designing system architectures, writing production code, code reviews, debugging complex systems, collaborating with product managers, optimizing performance, writing tests. DSA is tested heavily in interviews even if daily work is different.",
+    langs: ["C++ or Java (for DSA interviews)", "Python", "JavaScript", "Go / Rust (systems)"],
+    tools: ["Git", "IntelliJ / VS Code", "JIRA", "Linux", "Docker basics", "AWS basics", "SQL", "gRPC / REST", "Unit Testing frameworks"],
+    math: "Medium — Discrete Math, Algorithms, Complexity Analysis. Less stats, more logic.",
+    coding: "Very High",
+    roadmap: [
+      {phase:"0–6 Months", color:"#6c63ff", items:["Pick C++ or Java — master it","Data Structures: Arrays, Linked Lists, Trees, Graphs, Hashmaps","Algorithms: Sorting, Searching, Recursion","LeetCode: 50 Easy problems","OS, CN, DBMS basics"]},
+      {phase:"6–18 Months", color:"#43e97b", items:["LeetCode: 150+ Medium problems","System Design basics (Grokking System Design)","Build 2–3 backend projects with REST APIs","Contribute to open source","Internship hunting — crucial for placement"]},
+      {phase:"18+ Months", color:"#ffd700", items:["LeetCode: Hard problems + contest practice","Advanced System Design (Uber, Netflix-scale)","Specialize: Backend, Distributed Systems, Platform","FAANG interview prep","Competitive Programming (Codeforces, rated 1600+)"]}
+    ],
+    certs: ["No universal cert — portfolio + DSA skills matter more", "Oracle Java Certified", "Microsoft Azure Developer", "Google Cloud Professional Developer"],
+    demand2026: "Very High",
+    future: "Extremely stable — SWE is the foundation of all tech",
+    aiImpact: "Low-Moderate — AI writes code but cannot replace senior engineers who design systems",
+    fresherChance: "Good — Campus placements heavily SWE-focused",
+    competition: "Extremely High for FAANG, moderate for product companies",
+    indiaSalary: {entry:"₹6–14 LPA", mid:"₹18–35 LPA", senior:"₹40–100 LPA"},
+    usaSalary: {entry:"$100K–$130K", mid:"$150K–$210K", senior:"$220K–$450K+"},
+    highest: "₹2 Cr+ at FAANG India, $600K+ total comp in US",
+    difficulty: {learning:7, math:6, timeReady:6, interview:10},
+    workPressure: "High in FAANG, moderate in service companies",
+    remote: "Excellent post-2020 — most SWE roles have remote options",
+    freelance: "Moderate — Project-based work available but less than web dev",
+    growth: "SDE1 → SDE2 → SDE3 → Staff Engineer → Principal → Fellow/VP",
+    startup: "Core role in any startup — CTOs come from SWE backgrounds",
+    stability: "Highest of all fields — SWE roles always exist",
+    automation: "Low — AI is a tool for SWEs, not a replacement",
+    pros: ["Highest salary ceiling in campus placements","Universal — every company hires SWEs","Strong campus placement track record","Clear career progression","Respected globally","Foundation that prepares you for any specialization","Excellent visa sponsorship opportunities abroad","Strong DSA skills transfer to any CS field","High-quality open source ecosystem","Work-life balance better than media portrays"],
+    cons: ["DSA interview prep is grueling (300+ LeetCode problems)","FAANG competition is brutal","Entry salary varies wildly based on company tier","'SWE' is vague — means different things at different companies","Can take 2 years to crack top-tier interview","Ongoing skill maintenance required","Service company SWE roles can be monotonous","Imposter syndrome in big tech is intense","Work-life balance at FAANG is mixed","Location often required (Bangalore/NCR/Hyderabad)"]
+  },
+  {
+    id: "mobile",
+    emoji: "📱",
+    name: "Mobile App Dev",
+    rank: "#4 Visual",
+    tags: [
+      {label:"2 Platforms", cls:"tag-blue"},
+      {label:"Good Freelance", cls:"tag-gold"},
+      {label:"Growing", cls:"tag-green"},
+      {label:"Cross-Platform", cls:"tag-orange"}
+    ],
+    intro: "Mobile App Development covers building apps for Android (Java/Kotlin), iOS (Swift), or both using cross-platform frameworks like Flutter and React Native. Mobile is the primary computing surface for 5+ billion people.",
+    daily: "Building UI screens, integrating REST APIs, handling device permissions, optimizing performance (memory, battery), publishing to Play Store/App Store, fixing crashes, writing tests, collaborating with designers.",
+    langs: ["Flutter + Dart (cross-platform #1)","React Native + JavaScript","Kotlin (Android native)","Swift (iOS native)"],
+    tools: ["Android Studio", "Xcode", "Firebase", "Figma", "Postman", "Git", "Google Play Console", "App Store Connect", "Crashlytics", "Redux Toolkit"],
+    math: "Low — Basic geometry for animations, no heavy maths",
+    coding: "High",
+    roadmap: [
+      {phase:"0–6 Months", color:"#6c63ff", items:["Choose Flutter (recommended for beginners — one codebase, both platforms)","Dart programming basics","Build 3 simple apps: Calculator, Todo, Weather","Firebase for backend (auth, Firestore)","Project: Publish a simple app to Play Store"]},
+      {phase:"6–18 Months", color:"#43e97b", items:["State management (Riverpod / BLoC)","REST API integration","Local storage (SQLite / Hive)","Animations and custom UI","Project: E-commerce or food delivery clone"]},
+      {phase:"18+ Months", color:"#ffd700", items:["Native modules when needed (Kotlin/Swift interop)","CI/CD for mobile (Fastlane, Bitrise)","Performance profiling and optimization","Platform-specific features (ARKit, ML Kit)","Google Associate Android Developer Cert"]}
+    ],
+    certs: ["Google Associate Android Developer", "Flutter Certified App Developer", "AWS Mobile Developer", "Apple Developer Certification"],
+    demand2026: "High",
+    future: "Strong — Mobile is not going anywhere; AR/VR mobile is next frontier",
+    aiImpact: "Low — App UX requires human creativity and device-specific expertise",
+    fresherChance: "Good — Many startups hire junior mobile devs",
+    competition: "Moderate — Less saturated than web dev",
+    indiaSalary: {entry:"₹4–8 LPA", mid:"₹10–20 LPA", senior:"₹22–45 LPA"},
+    usaSalary: {entry:"$80K–$100K", mid:"$115K–$150K", senior:"$160K–$230K"},
+    highest: "₹50 LPA, $250K in US at top firms",
+    difficulty: {learning:6, math:2, timeReady:5, interview:6},
+    workPressure: "Moderate",
+    remote: "Excellent",
+    freelance: "Very Good — App development is highly freelance-able",
+    growth: "Junior → Senior Mobile → Mobile Lead → Head of Mobile → VP Product",
+    startup: "Excellent — Build your own app, launch a startup",
+    stability: "High",
+    automation: "Low",
+    pros: ["Can publish your own app and earn passively","Lower competition than web dev","Flutter allows targeting iOS + Android + web from one codebase","Strong freelancing market","Tangible output you can show on your phone","Fast-growing field with AR/VR coming","Good startup opportunities","Remote-friendly","Firebase makes backend easy for mobile devs","Growing demand in Tier-2 cities in India"],
+    cons: ["Apple ecosystem requires Mac + $99/year developer account","Platform fragmentation (Android has thousands of devices)","App Store reviews can be slow and arbitrary","Lower starting salaries than pure SWE","React Native can have performance issues","Flutter is newer — fewer senior resources","Push notifications and background tasks are complex","Monetization of apps is harder than it looks","Separate codebases for truly native apps are expensive","UI expectations are very high from users"]
+  },
+  {
+    id: "gamedev",
+    emoji: "🎮",
+    name: "Game Development",
+    rank: "#9 Passion",
+    tags: [
+      {label:"Creative", cls:"tag-green"},
+      {label:"Low Pay India", cls:"tag-red"},
+      {label:"Hard", cls:"tag-orange"},
+      {label:"Passion-Driven", cls:"tag-blue"}
+    ],
+    intro: "Game Development covers the creation of video games — from indie mobile games to AAA console titles. Combines software engineering, physics, art, sound design, and storytelling. It's the most multi-disciplinary field.",
+    daily: "Implementing game mechanics, working with physics engines, scripting AI behaviors, optimizing frame rates, collaborating with artists and designers, fixing bugs, playtesting, and for indie devs — doing everything.",
+    langs: ["C# (Unity — most jobs)", "C++ (Unreal Engine — AAA)", "GDScript (Godot — indie)", "Lua (Roblox, some games)"],
+    tools: ["Unity", "Unreal Engine 5", "Godot", "Blender (3D art)", "Adobe Substance", "FMOD (audio)", "Perforce/Git", "Shader Graph", "Photon (multiplayer)"],
+    math: "High — Linear Algebra, Physics, 3D Mathematics (vectors, matrices, quaternions), Game Theory",
+    coding: "High",
+    roadmap: [
+      {phase:"0–6 Months", color:"#6c63ff", items:["C# fundamentals","Unity engine basics: scenes, components, physics","Build 3 simple games: Flappy Bird, Breakout, Endless Runner","Publish to itch.io","Basic 3D math (vectors, rotations)"]},
+      {phase:"6–18 Months", color:"#43e97b", items:["Advanced Unity: shaders, animation, AI systems","Game design patterns (State Machine, Observer)","Multiplayer basics with Photon","Mobile optimization","Project: Full polished game on Play Store"]},
+      {phase:"18+ Months", color:"#ffd700", items:["Unreal Engine 5 (for AAA aspirations)","Custom game engine concepts","Procedural generation","VR/AR development","Portfolio: 3 completed, polished games"]}
+    ],
+    certs: ["Unity Certified Associate", "Unity Certified Professional", "Unreal Online Learning (Epic Games)", "Game Design courses (GCAP)"],
+    demand2026: "Moderate",
+    future: "Moderate — Indie is booming; AAA studio layoffs continue",
+    aiImpact: "Moderate — AI helps with art generation and NPC behavior, doesn't replace game designers",
+    fresherChance: "Hard — Industry requires a strong portfolio, not just a degree",
+    competition: "Very High for studio jobs; indie is more accessible",
+    indiaSalary: {entry:"₹3–6 LPA", mid:"₹7–15 LPA", senior:"₹15–30 LPA"},
+    usaSalary: {entry:"$60K–$85K", mid:"$95K–$140K", senior:"$150K–$220K"},
+    highest: "₹35 LPA in top studios, $250K in US (rare)",
+    difficulty: {learning:8, math:8, timeReady:8, interview:7},
+    workPressure: "Very High — 'Crunch' culture is infamous in AAA studios",
+    remote: "Moderate — AAA studios often need on-site collaboration",
+    freelance: "Moderate — Indie dev is essentially freelancing",
+    growth: "Junior Dev → Gameplay Programmer → Lead Programmer → Technical Director",
+    startup: "Excellent for indie game studios — lower barrier than AAA",
+    stability: "Low-Moderate — Studio layoffs are common (2023–2024 saw massive layoffs)",
+    automation: "Moderate — AI is rapidly changing art production; coding roles safer",
+    pros: ["Most creatively satisfying field","Strong indie game economy (Steam, itch.io)","Skills transfer to AR/VR, simulations, metaverse","Real-time graphics knowledge is highly transferable","Strong global community","Gamification used in education and training","Mobile gaming market in India is massive","VR/AR is the next frontier for game devs","Roblox and similar platforms creating new income streams","Portfolio-based hiring is more accessible"],
+    cons: ["Lowest salary in India among all CS fields","Brutal crunch culture in AAA studios","Massive layoffs at EA, Xbox, Unity (2023–2024)","Unity changed licensing (2023 controversy — trust issues)","Very competitive to get hired at good studios","Passion can become a grind","Long development cycles (3–5 years for AAA)","Games can fail commercially after years of work","Limited job market in India specifically","3D maths is genuinely difficult"]
+  },
+  {
+    id: "cyber",
+    emoji: "🔐",
+    name: "Cybersecurity",
+    rank: "#3 Recession-Proof",
+    tags: [
+      {label:"Recession-Proof", cls:"tag-green"},
+      {label:"Hacking", cls:"tag-red"},
+      {label:"Growing Fast", cls:"tag-blue"},
+      {label:"Certs Matter", cls:"tag-orange"}
+    ],
+    intro: "Cybersecurity protects systems, networks, and data from attacks and unauthorized access. Divided into Offensive Security (ethical hacking, red teams) and Defensive Security (blue teams, SOC analysts, incident response, security engineering).",
+    daily: "Offensive: Penetration testing (finding vulnerabilities before attackers), writing exploit code, social engineering assessments, writing reports. Defensive: Monitoring alerts, triaging incidents, forensics, threat hunting, vulnerability management.",
+    langs: ["Python (scripting/automation)", "Bash/PowerShell", "C/C++ (malware analysis)", "JavaScript (XSS exploits)", "Assembly (reverse engineering)"],
+    tools: ["Kali Linux", "Metasploit", "Burp Suite", "Wireshark", "Nmap", "OWASP tools", "Splunk", "Nessus", "IDA Pro", "Volatility"],
+    math: "Low-Medium — Cryptography requires some number theory, but most roles don't need heavy maths",
+    coding: "Medium — More scripting than application development",
+    roadmap: [
+      {phase:"0–6 Months", color:"#6c63ff", items:["Linux fundamentals (Kali Linux)","Networking: OSI model, TCP/IP, DNS, HTTP, firewalls","Start TryHackMe — Pre-Security path","CompTIA Security+ study","CTF challenges: PicoCTF"]},
+      {phase:"6–18 Months", color:"#43e97b", items:["Web application security (OWASP Top 10)","Burp Suite for web app testing","CompTIA Security+ certification","CEH (Certified Ethical Hacker)","HackTheBox — Starting Point machines","Bug Bounty on HackerOne / Bugcrowd (earn while learning)"]},
+      {phase:"18+ Months", color:"#ffd700", items:["OSCP certification (most respected in the industry)","Active Directory exploitation","Malware analysis basics","Specialize: Red Team / Blue Team / Cloud Security","Bug Bounty: aim for first $1000 payout"]}
+    ],
+    certs: ["CompTIA Security+ (start here)", "CEH — Certified Ethical Hacker", "OSCP — Offensive Security (most respected)", "CISSP (management level)", "AWS Security Specialty"],
+    demand2026: "Extremely High",
+    future: "Strongest long-term — cyber threats only increase with AI",
+    aiImpact: "Low — AI creates new attack surfaces that need human defenders",
+    fresherChance: "Good with certs — Security+ can get you SOC Analyst roles",
+    competition: "Moderate — Less saturated than web dev",
+    indiaSalary: {entry:"₹4–8 LPA", mid:"₹10–20 LPA", senior:"₹22–50 LPA"},
+    usaSalary: {entry:"$80K–$105K", mid:"$120K–$160K", senior:"$170K–$280K"},
+    highest: "₹60 LPA as CISO, $300K+ in US at senior roles",
+    difficulty: {learning:7, math:4, timeReady:6, interview:6},
+    workPressure: "High when incidents occur; moderate otherwise",
+    remote: "Very Good — SOC roles can be remote",
+    freelance: "Excellent — Bug Bounty is paid freelancing; pentesting consulting is lucrative",
+    growth: "SOC Analyst → Pentest Consultant → Security Architect → CISO",
+    startup: "Good — Every startup needs security assessment",
+    stability: "Highest stability — cyber threats never go away",
+    automation: "Very Low — Security is about anticipating unknown threats",
+    pros: ["Virtually zero unemployment rate globally","Bug Bounty lets you earn while learning","Extremely exciting and dynamic work","Recession-proof — attacks increase in downturns","Government and defense sector jobs available","Remote-friendly","Growing AI + Security overlap creates new roles","CEH / OSCP certs are highly respected","Ethical hacking is thrilling","Every company on earth needs security"],
+    cons: ["Entry without certs is very difficult","Legal grey area — unauthorized testing is a crime","Always on-call during security incidents","Stress during breach response can be extreme","Keeping up with new CVEs and exploits is relentless","Dark web knowledge required for threat intelligence","Some roles require clearances (government)","Burnout in SOC roles is extremely common","Ethics line between hacking and crime is fine","In India, cybersecurity pay starts lower than SWE"]
+  },
+  {
+    id: "uiux",
+    emoji: "🎨",
+    name: "UI/UX & Design",
+    rank: "#7 Creative",
+    tags: [
+      {label:"Creative", cls:"tag-green"},
+      {label:"Low Coding", cls:"tag-blue"},
+      {label:"Freelance", cls:"tag-gold"},
+      {label:"Moderate Pay", cls:"tag-orange"}
+    ],
+    intro: "UI/UX Design focuses on creating digital products that are visually beautiful, intuitive, and delightful to use. UI (User Interface) covers visual design; UX (User Experience) covers research, information architecture, and interaction design.",
+    daily: "User research (interviews, surveys), wireframing, prototyping in Figma, usability testing, collaborating with developers on design systems, iterating based on user feedback, creating visual assets, maintaining design documentation.",
+    langs: ["HTML/CSS (basic — very helpful)", "JavaScript (basic)", "No programming required for pure design roles"],
+    tools: ["Figma (industry standard)", "Adobe XD", "Adobe Photoshop/Illustrator", "Framer", "Principle", "InVision", "Maze (user testing)", "Hotjar", "Lottie (animations)", "Zeplin"],
+    math: "Very Low — Basic visual proportions, color theory, Gestalt principles",
+    coding: "Low (Optional)",
+    roadmap: [
+      {phase:"0–6 Months", color:"#6c63ff", items:["Learn Figma completely (free on figma.com)","Color theory, Typography, Layout principles","Recreate 5 existing app designs in Figma","Basic UX: user flows, wireframes, personas","Project: Redesign an existing app's onboarding"]},
+      {phase:"6–18 Months", color:"#43e97b", items:["UX Research methods: usability testing, A/B testing","Design Systems (build your own component library)","Responsive design and accessibility (WCAG)","Microinteractions and animation (Framer)","Portfolio: 3 case studies with problem → process → solution"]},
+      {phase:"18+ Months", color:"#ffd700", items:["Product thinking and metrics-driven design","Design leadership: running design sprints","Basic HTML/CSS to collaborate better with devs","DesignOps at scale","Google UX Design Certificate", "Aim for top-tier portfolios (Dribbble, Behance)"]}
+    ],
+    certs: ["Google UX Design Certificate (Coursera)", "Interaction Design Foundation membership", "Nielsen Norman Group UX Certification", "Adobe Certified Professional"],
+    demand2026: "High",
+    future: "Stable — but AI design tools (Figma AI, Midjourney) are changing the baseline",
+    aiImpact: "High — AI can generate UI mockups; strategic UX research is safer",
+    fresherChance: "Good — Portfolio matters more than degree",
+    competition: "High — Many people shift to design from arts and CS",
+    indiaSalary: {entry:"₹3–7 LPA", mid:"₹8–18 LPA", senior:"₹20–40 LPA"},
+    usaSalary: {entry:"$65K–$90K", mid:"$100K–$140K", senior:"$150K–$220K"},
+    highest: "₹45 LPA as Principal Designer, $250K at FAANG design teams",
+    difficulty: {learning:4, math:1, timeReady:4, interview:5},
+    workPressure: "Low-Moderate — Creative work with clear deliverables",
+    remote: "Excellent",
+    freelance: "Excellent — Highest freelancing rate per hour for non-coding roles",
+    growth: "Junior Designer → Senior → Lead → Head of Design → CPO",
+    startup: "Very Good — Every startup needs a designer from day 1",
+    stability: "Moderate — Strategic UX is safe; visual-only design is getting automated",
+    automation: "High for visual tasks — AI generates UI quickly; UX strategy is safer",
+    pros: ["No heavy math or coding required","Portfolio-based — you control your narrative","Excellent freelancing potential","Creative work is satisfying","Shorter time to first freelance income","In high demand as tech products proliferate","Remote-friendly","Collaborate with both tech and business sides","User research is intellectually engaging","Great for people who love aesthetics and psychology"],
+    cons: ["Lower salary ceiling compared to engineering roles","AI tools are disrupting the field rapidly","Subjectivity makes client relationships challenging","Needs both creativity and systems thinking","Requires continuous portfolio updates","'Design by committee' is a real struggle","Junior roles can be pixel-pushing, not strategic","Figma becoming dominant reduces tool diversity","Getting into FAANG design is extremely competitive","Engineering teams sometimes don't value design input"]
+  },
+  {
+    id: "devops",
+    emoji: "⚙️",
+    name: "DevOps",
+    rank: "#5 Bridge",
+    tags: [
+      {label:"High Demand", cls:"tag-green"},
+      {label:"Bridge Role", cls:"tag-blue"},
+      {label:"Automation", cls:"tag-orange"},
+      {label:"Linux Heavy", cls:"tag-red"}
+    ],
+    intro: "DevOps bridges software development and IT operations. DevOps engineers build and maintain the pipelines, infrastructure, and automation that allow development teams to ship code faster, more reliably, and at scale.",
+    daily: "Writing CI/CD pipelines, managing Kubernetes clusters, automating infrastructure with Terraform, monitoring application health, responding to incidents, optimizing deployment processes, collaborating between dev and ops teams.",
+    langs: ["Bash/Shell (essential)", "Python (automation)", "YAML (configs)", "Go (tools like Terraform are in Go)", "Groovy (Jenkins pipelines)"],
+    tools: ["Docker", "Kubernetes", "Jenkins / GitHub Actions / GitLab CI", "Terraform", "Ansible", "Prometheus + Grafana", "AWS/GCP/Azure", "Helm", "ArgoCD", "ELK Stack"],
+    math: "Very Low — Systems thinking more than maths",
+    coding: "Medium — Scripting and automation-focused",
+    roadmap: [
+      {phase:"0–6 Months", color:"#6c63ff", items:["Linux mastery (this is non-negotiable)","Git and version control","Docker: containers, images, compose","Bash scripting","Basic CI/CD: GitHub Actions"]},
+      {phase:"6–18 Months", color:"#43e97b", items:["Kubernetes (hardest, most valuable skill)","Terraform for IaC","Jenkins or GitLab CI/CD pipelines","Monitoring: Prometheus + Grafana dashboards","AWS/GCP fundamentals"]},
+      {phase:"18+ Months", color:"#ffd700", items:["GitOps with ArgoCD","Service mesh (Istio)","Security in DevOps (DevSecOps)","Platform Engineering — build Internal Developer Platforms","CKA, AWS DevOps Engineer Cert"]}
+    ],
+    certs: ["CKA — Certified Kubernetes Administrator", "AWS DevOps Engineer Professional", "HashiCorp Terraform Associate", "Linux Foundation LFCS"],
+    demand2026: "Very High",
+    future: "Very strong — Platform Engineering is the evolution",
+    aiImpact: "Low — AIOps helps with monitoring but doesn't replace engineers",
+    fresherChance: "Moderate — Requires Linux + Docker proficiency, but certs help",
+    competition: "Moderate — Many SWEs transition into DevOps",
+    indiaSalary: {entry:"₹5–10 LPA", mid:"₹12–25 LPA", senior:"₹28–60 LPA"},
+    usaSalary: {entry:"$90K–$115K", mid:"$130K–$170K", senior:"$180K–$280K"},
+    highest: "₹65 LPA at top companies, $300K in US (Staff DevOps/Platform)",
+    difficulty: {learning:7, math:2, timeReady:6, interview:7},
+    workPressure: "High — On-call rotations, production incidents can be stressful",
+    remote: "Excellent — All infrastructure is managed remotely",
+    freelance: "Moderate — Consulting for pipeline setup and cloud migration",
+    growth: "DevOps Eng → Senior → Staff → Principal → VP of Platform Engineering",
+    startup: "Essential — Every tech startup needs DevOps as it scales",
+    stability: "Very High",
+    automation: "Low",
+    pros: ["Extremely in-demand — every tech company needs DevOps","Bridges developer skills with infrastructure","Linux skills are universally valuable","No heavy maths","Great salary for relatively accessible skill set","Once you know K8s, you're valuable anywhere","Remote-friendly","Interesting problem-solving around scale and reliability","Platform Engineering is the premium evolution of DevOps","Strong in financial services and healthcare (compliance)"],
+    cons: ["On-call incidents at 3 AM are part of the job","Kubernetes learning curve is notoriously steep","Tooling landscape changes constantly (2025: ArgoCD, FluxCD battles)","Needs understanding of every layer of the stack","Can be overwhelming for beginners (too many tools)","Less creative than development roles","Blame culture when production goes down","High responsibility with production systems","Linux CLI is intimidating initially","Salary starts modestly, grows slowly initially"]
+  },
+  {
+    id: "blockchain",
+    emoji: "⛓️",
+    name: "Blockchain Dev",
+    rank: "#10 Niche",
+    tags: [
+      {label:"Niche", cls:"tag-orange"},
+      {label:"Volatile", cls:"tag-red"},
+      {label:"High Pay (when hot)", cls:"tag-gold"},
+      {label:"Cyclical", cls:"tag-blue"}
+    ],
+    intro: "Blockchain Development covers building decentralized applications (dApps), smart contracts, DeFi protocols, NFT platforms, and Web3 infrastructure. The field is closely tied to crypto market cycles.",
+    daily: "Writing and auditing Solidity smart contracts, building Web3 frontends with ethers.js, integrating wallets (MetaMask), testing contracts with Hardhat, ensuring security of on-chain code (bugs are irreversible and very costly).",
+    langs: ["Solidity (Ethereum smart contracts)", "JavaScript/TypeScript (web3 frontend)", "Rust (Solana)", "Python (scripting)", "Go (some blockchain core development)"],
+    tools: ["Hardhat / Foundry", "ethers.js / web3.js", "MetaMask", "IPFS", "The Graph", "OpenZeppelin", "Remix IDE", "Truffle", "Chainlink", "Alchemy"],
+    math: "High — Cryptography, Number Theory, Game Theory (tokenomics)",
+    coding: "High",
+    roadmap: [
+      {phase:"0–6 Months", color:"#6c63ff", items:["Blockchain fundamentals: how Bitcoin/Ethereum work","Solidity basics on CryptoZombies","Deploy your first smart contract to testnet","JavaScript/TypeScript for web3 frontends","Mini project: Deploy an ERC-20 token"]},
+      {phase:"6–18 Months", color:"#43e97b", items:["DeFi protocols: Uniswap, Aave, Compound internals","Smart contract security and audit basics","Hardhat for testing and deployment","Build a DeFi dashboard or NFT marketplace","Smart contract auditing practice (Code4rena, Sherlock)"]},
+      {phase:"18+ Months", color:"#ffd700", items:["Advanced security: formal verification","Layer 2 solutions (Optimism, Arbitrum, Polygon)","Certified Blockchain Developer","Participate in audit contests to earn money","Cross-chain development with bridges and oracles"]}
+    ],
+    certs: ["Certified Blockchain Developer (101 Blockchains)", "Alchemy University Web3 Dev", "Ethereum Foundation courses", "ConsenSys Blockchain Developer Bootcamp"],
+    demand2026: "Moderate (post-hype correction)",
+    future: "Uncertain — tied to regulatory environment and crypto cycles",
+    aiImpact: "Low for core dev — blockchain is AI-resistant by nature",
+    fresherChance: "Hard — small job market; mostly freelance or DAO work",
+    competition: "Moderate (small market, fewer people)",
+    indiaSalary: {entry:"₹5–10 LPA", mid:"₹15–30 LPA", senior:"₹35–80 LPA"},
+    usaSalary: {entry:"$90K–$120K", mid:"$140K–$200K", senior:"$200K–$400K"},
+    highest: "Uncapped if you build a successful protocol; $500K+ in bull markets",
+    difficulty: {learning:9, math:8, timeReady:8, interview:8},
+    workPressure: "High — DeFi is 24/7, protocol failures are catastrophic",
+    remote: "Excellent — Web3 culture is fully remote/DAO-based",
+    freelance: "Excellent — Smart contract auditing pays very well",
+    growth: "Smart Contract Dev → Protocol Engineer → Core Protocol Dev → Founder",
+    startup: "Highest startup potential if you build a protocol",
+    stability: "Low — Directly tied to crypto market cycles",
+    automation: "Very Low — Smart contract security requires human expertise",
+    pros: ["Highest potential upside if you build a successful protocol","Fully remote DAO culture","Cutting-edge cryptography and economic design","Smart contract auditing pays $500–$2000/hour","Early-stage technology with massive upside","Decentralized finance is genuinely innovative","Bug bounties in DeFi pay millions","Global market — no geographic limits","Web3 culture is collaborative and open source","Skills transfer to traditional finance tech"],
+    cons: ["Job market is extremely small and volatile","Salary tied to crypto market cycles","Single bug in a smart contract can lose millions (high pressure)","Regulatory crackdowns can eliminate entire sub-sectors","Many scam projects in the space","Very steep learning curve","Not a good 'safe' career choice","Market crashed 80%+ in 2022 — many layoffs","India has limited blockchain companies","Requires strong JavaScript + Solidity + security knowledge simultaneously"]
+  }
+];
+
+const COMPARISON_DATA = [
+  {field:"🤖 AI / ML",       salary:"⭐⭐⭐⭐⭐", firstJob:"⭐⭐⭐",   future:"⭐⭐⭐⭐⭐", aiRes:"⭐⭐⭐⭐⭐", difficulty:"9/10", freelance:"⭐⭐⭐",   remote:"⭐⭐⭐⭐⭐", startup:"⭐⭐⭐⭐⭐", global:"⭐⭐⭐⭐⭐", score:"9.1", cls:"s-high"},
+  {field:"📊 Data Science",  salary:"⭐⭐⭐⭐",   firstJob:"⭐⭐⭐⭐", future:"⭐⭐⭐⭐",   aiRes:"⭐⭐⭐",     difficulty:"7/10", freelance:"⭐⭐⭐⭐", remote:"⭐⭐⭐⭐⭐", startup:"⭐⭐⭐⭐", global:"⭐⭐⭐⭐⭐", score:"8.2", cls:"s-high"},
+  {field:"☁️ Cloud",         salary:"⭐⭐⭐⭐",   firstJob:"⭐⭐⭐⭐", future:"⭐⭐⭐⭐⭐", aiRes:"⭐⭐⭐⭐⭐", difficulty:"7/10", freelance:"⭐⭐⭐",   remote:"⭐⭐⭐⭐⭐", startup:"⭐⭐⭐⭐", global:"⭐⭐⭐⭐⭐", score:"8.5", cls:"s-high"},
+  {field:"🌐 Web Dev",       salary:"⭐⭐⭐",     firstJob:"⭐⭐⭐⭐⭐",future:"⭐⭐⭐⭐",   aiRes:"⭐⭐⭐",     difficulty:"5/10", freelance:"⭐⭐⭐⭐⭐",remote:"⭐⭐⭐⭐⭐", startup:"⭐⭐⭐⭐⭐",global:"⭐⭐⭐⭐⭐", score:"8.4", cls:"s-high"},
+  {field:"💻 SWE",           salary:"⭐⭐⭐⭐⭐", firstJob:"⭐⭐⭐⭐", future:"⭐⭐⭐⭐⭐", aiRes:"⭐⭐⭐⭐",   difficulty:"8/10", freelance:"⭐⭐⭐",   remote:"⭐⭐⭐⭐⭐", startup:"⭐⭐⭐⭐⭐",global:"⭐⭐⭐⭐⭐", score:"9.0", cls:"s-high"},
+  {field:"📱 Mobile Dev",    salary:"⭐⭐⭐",     firstJob:"⭐⭐⭐⭐", future:"⭐⭐⭐⭐",   aiRes:"⭐⭐⭐⭐",   difficulty:"6/10", freelance:"⭐⭐⭐⭐", remote:"⭐⭐⭐⭐⭐", startup:"⭐⭐⭐⭐⭐",global:"⭐⭐⭐⭐",   score:"7.8", cls:"s-mid"},
+  {field:"🎮 Game Dev",      salary:"⭐⭐",       firstJob:"⭐⭐",     future:"⭐⭐⭐",     aiRes:"⭐⭐⭐",     difficulty:"8/10", freelance:"⭐⭐⭐",   remote:"⭐⭐⭐",     startup:"⭐⭐⭐",     global:"⭐⭐⭐",     score:"6.0", cls:"s-low"},
+  {field:"🔐 Cybersecurity", salary:"⭐⭐⭐⭐",   firstJob:"⭐⭐⭐⭐", future:"⭐⭐⭐⭐⭐", aiRes:"⭐⭐⭐⭐⭐", difficulty:"7/10", freelance:"⭐⭐⭐⭐⭐",remote:"⭐⭐⭐⭐",   startup:"⭐⭐⭐",     global:"⭐⭐⭐⭐⭐", score:"8.6", cls:"s-high"},
+  {field:"🎨 UI/UX",         salary:"⭐⭐⭐",     firstJob:"⭐⭐⭐⭐", future:"⭐⭐⭐",     aiRes:"⭐⭐",       difficulty:"4/10", freelance:"⭐⭐⭐⭐⭐",remote:"⭐⭐⭐⭐⭐", startup:"⭐⭐⭐⭐",   global:"⭐⭐⭐⭐",   score:"7.2", cls:"s-mid"},
+  {field:"⚙️ DevOps",        salary:"⭐⭐⭐⭐",   firstJob:"⭐⭐⭐",   future:"⭐⭐⭐⭐⭐", aiRes:"⭐⭐⭐⭐⭐", difficulty:"7/10", freelance:"⭐⭐⭐",   remote:"⭐⭐⭐⭐⭐", startup:"⭐⭐⭐⭐",   global:"⭐⭐⭐⭐⭐", score:"8.3", cls:"s-high"},
+  {field:"⛓️ Blockchain",    salary:"⭐⭐⭐⭐",   firstJob:"⭐⭐",     future:"⭐⭐⭐",     aiRes:"⭐⭐⭐⭐⭐", difficulty:"9/10", freelance:"⭐⭐⭐⭐", remote:"⭐⭐⭐⭐⭐", startup:"⭐⭐⭐⭐⭐",global:"⭐⭐⭐",     score:"6.5", cls:"s-low"},
+];
+
+const RANKINGS = [
+  {rank:1, field:"💻 Software Development (SWE)", reason:"Campus placements, highest salary ceiling, universal demand. Mastering DSA opens every door."},
+  {rank:2, field:"🌐 Web Development", reason:"Fastest to first job. Best for learning fundamentals and pivoting later. Best freelancing base."},
+  {rank:3, field:"🤖 AI / ML", reason:"Best long-term career. Highest future salary. Worth investing time in from Year 2."},
+  {rank:4, field:"☁️ Cloud Computing", reason:"Certs create shortcut to employment. No heavy maths. Overlaps with DevOps for double value."},
+  {rank:5, field:"🔐 Cybersecurity", reason:"Recession-proof, exciting work, strong fresher path via certs. Bug Bounty earns while learning."},
+  {rank:6, field:"📊 Data Science", reason:"High demand but market is saturated with bootcamp grads. SQL + Python fundamentals are worth learning anyway."},
+  {rank:7, field:"⚙️ DevOps", reason:"High value but steep entry. Better as a Year 3–4 specialization after software development foundation."},
+  {rank:8, field:"📱 Mobile App Dev", reason:"Flutter makes it accessible. Good for building apps, but Web Dev + React Native gives more flexibility."},
+  {rank:9, field:"🎨 UI/UX Design", reason:"Great if you have design sensibility. But limited growth in pure design without engineering."},
+  {rank:10, field:"🎮 Game Development", reason:"Only if it's a deep passion. Lowest salaries in India. Hard studio job market."},
+  {rank:11, field:"⛓️ Blockchain Dev", reason:"Too volatile and niche for a 1st year beginner. Learn it later if interested, not as primary path."},
+];
+
+function renderFieldGrid() {
+  const grid = document.getElementById('fieldGrid');
+  grid.innerHTML = FIELDS.map((f, i) => `
+    <div class="field-card" onclick="showField(${i})" id="fc-${i}">
+      <div class="field-emoji">${f.emoji}</div>
+      <div class="field-name">${f.name}</div>
+      <div class="field-rank">${f.rank}</div>
+    </div>
+  `).join('');
+}
+
+function getRatingColor(val) {
+  if (val <= 3) return '#43e97b';
+  if (val <= 6) return '#f7971e';
+  return '#ff6b6b';
+}
+
+function showField(idx) {
+  document.querySelectorAll('.field-card').forEach(c => c.classList.remove('active'));
+  document.getElementById('fc-'+idx).classList.add('active');
+  const f = FIELDS[idx];
+  const panel = document.getElementById('detailPanel');
+  panel.classList.remove('fade-in');
+  void panel.offsetWidth;
+  panel.classList.add('fade-in');
+  panel.innerHTML = `
+    <div class="panel-header">
+      <div class="panel-emoji">${f.emoji}</div>
+      <div>
+        <div class="panel-title">${f.name}</div>
+        <div class="panel-tags">${f.tags.map(t=>`<span class="tag ${t.cls}">${t.label}</span>`).join('')}</div>
+      </div>
+    </div>
+    <div class="panel-tabs">
+      <button class="tab-btn active" onclick="switchTab(this,'tab-intro')">📖 Overview</button>
+      <button class="tab-btn" onclick="switchTab(this,'tab-skills')">🛠 Skills</button>
+      <button class="tab-btn" onclick="switchTab(this,'tab-roadmap')">🗺 Roadmap</button>
+      <button class="tab-btn" onclick="switchTab(this,'tab-market')">📈 Market</button>
+      <button class="tab-btn" onclick="switchTab(this,'tab-salary')">💰 Salary</button>
+      <button class="tab-btn" onclick="switchTab(this,'tab-difficulty')">⚡ Difficulty</button>
+      <button class="tab-btn" onclick="switchTab(this,'tab-proscons')">⚖️ Pros & Cons</button>
+    </div>
+    <div class="panel-body">
+      <div id="tab-intro" class="tab-content active">
+        <h3>What is ${f.name}?</h3>
+        <p>${f.intro}</p>
+        <h3>What Do You Do Daily?</h3>
+        <p>${f.daily}</p>
+        <div class="info-grid">
+          <div class="info-box"><div class="info-box-label">Coding Level</div><div class="info-box-value">${f.coding}</div><div class="info-box-sub">Requirement</div></div>
+          <div class="info-box"><div class="info-box-label">Fresher Chance</div><div class="info-box-value" style="font-size:14px;margin-top:4px;">${f.fresherChance}</div></div>
+          <div class="info-box"><div class="info-box-label">Remote Work</div><div class="info-box-value" style="font-size:14px;margin-top:4px;">${f.remote}</div></div>
+          <div class="info-box"><div class="info-box-label">Freelance</div><div class="info-box-value" style="font-size:14px;margin-top:4px;">${f.freelance}</div></div>
+        </div>
+        <h3>Work-Life Balance</h3>
+        <p><strong>Work Pressure:</strong> ${f.workPressure}</p>
+        <p><strong>Remote Opportunities:</strong> ${f.remote}</p>
+        <p><strong>Freelancing:</strong> ${f.freelance}</p>
+        <h3>Career Growth</h3>
+        <p><strong>Growth Path:</strong> ${f.growth}</p>
+        <p><strong>Startup Potential:</strong> ${f.startup}</p>
+        <p><strong>Long-Term Stability:</strong> ${f.stability}</p>
+        <p><strong>AI Automation Risk:</strong> ${f.automation}</p>
+      </div>
+      <div id="tab-skills" class="tab-content">
+        <h3>Programming Languages</h3>
+        <div>${f.langs.map(l=>`<span class="pill">${l}</span>`).join('')}</div>
+        <h3>Tools & Frameworks</h3>
+        <div>${f.tools.map(t=>`<span class="pill">${t}</span>`).join('')}</div>
+        <h3>Mathematics Requirement</h3>
+        <p>${f.math}</p>
+        <h3>Certifications Worth Getting</h3>
+        <ul style="padding-left:20px;color:var(--muted);font-size:13px;">
+          ${f.certs.map(c=>`<li style="margin-bottom:8px;">${c}</li>`).join('')}
+        </ul>
+      </div>
+      <div id="tab-roadmap" class="tab-content">
+        <h3>Learning Roadmap</h3>
+        ${f.roadmap.map((r,i)=>`
+          <div class="roadmap-step">
+            <div class="step-dot" style="background:${r.color}22;color:${r.color};">${i+1}</div>
+            <div class="step-content">
+              <h4>${r.phase}</h4>
+              <ul>${r.items.map(it=>`<li>${it}</li>`).join('')}</ul>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+      <div id="tab-market" class="tab-content">
+        <div class="info-grid">
+          <div class="info-box"><div class="info-box-label">Demand 2026</div><div class="info-box-value" style="font-size:15px;margin-top:4px;">${f.demand2026}</div></div>
+          <div class="info-box"><div class="info-box-label">Competition</div><div class="info-box-value" style="font-size:15px;margin-top:4px;">${f.competition}</div></div>
+        </div>
+        <h3>Future Outlook (10 Years)</h3>
+        <p>${f.future}</p>
+        <h3>Impact of AI on This Field</h3>
+        <p>${f.aiImpact}</p>
+        <h3>Fresher Job Chances</h3>
+        <p>${f.fresherChance}</p>
+      </div>
+      <div id="tab-salary" class="tab-content">
+        <table class="salary-table">
+          <thead><tr><th>Country</th><th>Entry Level</th><th>Mid Level</th><th>Senior Level</th></tr></thead>
+          <tbody>
+            <tr><td>🇮🇳 India</td><td style="color:var(--accent3)">${f.indiaSalary.entry}</td><td style="color:var(--accent)">${f.indiaSalary.mid}</td><td style="color:var(--gold)">${f.indiaSalary.senior}</td></tr>
+            <tr><td>🇺🇸 USA</td><td style="color:var(--accent3)">${f.usaSalary.entry}</td><td style="color:var(--accent)">${f.usaSalary.mid}</td><td style="color:var(--gold)">${f.usaSalary.senior}</td></tr>
+          </tbody>
+        </table>
+        <div class="info-box" style="margin-top:16px;">
+          <div class="info-box-label">Highest Salary Potential</div>
+          <div class="info-box-value" style="font-size:15px;color:var(--gold);margin-top:6px;">${f.highest}</div>
+        </div>
+      </div>
+      <div id="tab-difficulty" class="tab-content">
+        <h3>Difficulty Ratings</h3>
+        ${[
+          {label:"Learning Difficulty", val:f.difficulty.learning},
+          {label:"Mathematics Difficulty", val:f.difficulty.math},
+          {label:"Time to Job-Ready (scale)", val:f.difficulty.timeReady},
+          {label:"Interview Difficulty", val:f.difficulty.interview}
+        ].map(r=>`
+          <div class="rating-row">
+            <span class="rating-label">${r.label}</span>
+            <div class="rating-bar"><div class="rating-fill" style="width:${r.val*10}%;background:${getRatingColor(r.val)};"></div></div>
+            <span class="rating-num">${r.val}/10</span>
+          </div>
+        `).join('')}
+      </div>
+      <div id="tab-proscons" class="tab-content">
+        <div class="pros-cons">
+          <div class="pros-list">
+            <h4>✅ Pros (${f.pros.length})</h4>
+            <ul>${f.pros.map(p=>`<li>${p}</li>`).join('')}</ul>
+          </div>
+          <div class="cons-list">
+            <h4>❌ Cons (${f.cons.length})</h4>
+            <ul>${f.cons.map(c=>`<li>${c}</li>`).join('')}</ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function switchTab(btn, tabId) {
+  btn.closest('.detail-panel').querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.closest('.detail-panel').querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(tabId).classList.add('active');
+}
+
+function renderCompTable() {
+  const headers = ['Field','Salary','First Job','Future Scope','AI Resistance','Difficulty','Freelancing','Remote','Startup','Global Demand','Score'];
+  const keys = ['field','salary','firstJob','future','aiRes','difficulty','freelance','remote','startup','global','score'];
+  const table = document.getElementById('compTable');
+  table.innerHTML = `
+    <thead><tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead>
+    <tbody>${COMPARISON_DATA.map(row=>`
+      <tr>
+        ${keys.map((k,i)=>i===keys.length-1
+          ? `<td><span class="score-badge ${row.cls}">${row[k]}</span></td>`
+          : `<td>${row[k]}</td>`
+        ).join('')}
+      </tr>
+    `).join('')}</tbody>
+  `;
+}
+
+function renderRecommendation() {
+  const sec = document.getElementById('rankingSection');
+  sec.innerHTML = `
+    <h3>Field Rankings — For Your Profile</h3>
+    <table class="rank-table">
+      <tbody>${RANKINGS.map(r=>`
+        <tr>
+          <td>#${r.rank}</td>
+          <td><strong>${r.field}</strong><br><span style="color:var(--muted);font-size:12px;">${r.reason}</span></td>
+        </tr>
+      `).join('')}</tbody>
+    </table>
+    <div class="divider"></div>
+  `;
+
+  const cards = document.getElementById('recCards');
+  cards.innerHTML = `
+    <h3>Specific Recommendations</h3>
+    <div class="rec-card top">
+      <div class="rec-badge" style="color:var(--gold);">🏆 Top 3 Fields to Focus On</div>
+      <div class="rec-title">SWE + Web Dev + Cloud/Cybersecurity</div>
+      <div class="rec-body">
+        <strong>1. Software Development (SWE):</strong> The foundation of everything. Learn C++/Java + DSA. This is what top Indian companies (Google, Microsoft, Amazon, Flipkart, Zepto) hire freshers for. Your campus placement will be through this path.<br><br>
+        <strong>2. Web Development:</strong> Learn this in parallel as your "practical" skill. Build projects, potentially freelance early. React + Node.js makes you immediately hireable. It also funds your learning journey.<br><br>
+        <strong>3. AI/ML or Cybersecurity:</strong> Start in Year 2. AI/ML if you love maths and research. Cybersecurity if you love systems and problem-solving. Both are 10–20 year safe bets.
+      </div>
+    </div>
+    <div class="rec-card safe">
+      <div class="rec-badge" style="color:var(--accent3);">🛡️ Safest Career Option</div>
+      <div class="rec-title">Cybersecurity</div>
+      <div class="rec-body">Zero percent unemployment rate globally. Cyber threats don't stop in recessions — they increase. CompTIA Security+ opens doors within 6 months. Bug Bounty lets you earn while still in college. Every company, government, and hospital needs security talent. It is the most recession-proof CS career that exists.</div>
+    </div>
+    <div class="rec-card pay">
+      <div class="rec-badge" style="color:var(--accent);">💰 Highest Salary Potential</div>
+      <div class="rec-title">AI/ML Engineering</div>
+      <div class="rec-body">₹1 Crore+ CTC at FAANG India. $400K+ total comp in US at senior level. Every Fortune 500 company is building AI teams. The bottleneck is talent — there simply aren't enough good ML engineers. Yes, it takes 2+ years to get job-ready. But the ROI is unmatched. If you're willing to study deeply, this is the highest-paying path in tech over 10 years.</div>
+    </div>
+    <div class="rec-card easy">
+      <div class="rec-badge" style="color:var(--accent4);">⚡ Easiest Path to First Job</div>
+      <div class="rec-title">Web Development (Full Stack)</div>
+      <div class="rec-body">You can get your first job in 8–12 months with React + Node.js + one full-stack project on GitHub. No maths required. Thousands of free resources. The most freelancing opportunities. You can build a portfolio right now with zero rupees. Internships are widely available. Many companies hire junior web devs with no degree — just a strong GitHub and a live project.</div>
+    </div>
+    <div class="rec-card future">
+      <div class="rec-badge" style="color:var(--accent2);">🚀 Most Future-Proof</div>
+      <div class="rec-title">AI/ML + Cloud (Combined)</div>
+      <div class="rec-body">The most resilient combination for the next 20 years: become an ML Engineer who can also deploy and manage ML infrastructure on cloud. This profile — called MLOps Engineer or ML Platform Engineer — is the single most in-demand and highest-paid tech role entering the 2030s. Start with Cloud to get your first job quickly, then layer AI/ML expertise on top.</div>
+    </div>
+    <div class="highlight-box" style="margin-top:24px;">
+      <strong>⭐ The One-Line Summary:</strong> In Year 1, learn Web Dev (get your first project live) + DSA (for placements). In Year 2, pick one specialization: AI/ML if you want the highest ceiling, Cybersecurity if you want the safest floor, Cloud/DevOps if you want the best balance of both.
+    </div>
+  `;
+}
+
+function scrollTo(id) {
+  document.getElementById(id).scrollIntoView({behavior:'smooth'});
+}
+
+renderFieldGrid();
+renderCompTable();
+renderRecommendation();
+</script>
+</body>
+</html>
